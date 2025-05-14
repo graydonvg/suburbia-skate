@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { ButtonLink } from "./ButtonLink";
-import { Logo } from "./Logo";
 import { createClient } from "@/prismicio";
 import { PrismicNextLink } from "@prismicio/next";
+
+import { ButtonLink } from "./ButtonLink";
+import { Logo } from "./Logo";
 
 export async function Header() {
   const client = createClient();
