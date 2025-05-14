@@ -22,7 +22,7 @@ export function ButtonLink({
         "button-cutout group mx-4 inline-flex items-center bg-gradient-to-b from-25% to-75% bg-[length:100%_400%] font-bold transition-[filter,background-position] duration-300 hover:bg-bottom",
         {
           "gap-2.5 py-2 text-base": size === "sm",
-          "~py-2.5/3 gap-3 px-1 text-lg": size === "md",
+          "gap-3 px-1 text-lg ~py-2.5/3": size === "md",
           "~text-lg/2xl ~gap-3/4 ~px-1/2 ~py-3/4": size === "lg",
           "from-brand-orange to-brand-lime text-black hover:text-black":
             color === "orange",
