@@ -25,7 +25,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-texture relative h-dvh overflow-hidden bg-brand-pink"
+      className="texture-bg relative h-dvh overflow-hidden bg-brand-pink"
     >
       <div className="absolute inset-0 mx-auto mt-24 grid max-w-6xl grid-rows-[1fr,auto] place-items-end px-6 ~py-10/16">
         <Heading className="relative max-w-2xl place-self-start">

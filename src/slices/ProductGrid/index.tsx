@@ -23,7 +23,7 @@ const ProductGrid: FC<ProductGridProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-texture bg-brand-gray"
+      className="texture-bg bg-brand-gray"
     >
       <Heading as="h2" className="text-center ~mb-4/6">
         <PrismicText field={slice.primary.heading} />

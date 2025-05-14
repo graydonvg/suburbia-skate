@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg-texture {
+.texture-bg {
   background-image: url("/bg-texture.webp");
   background-size: 720px 460px;
   background-repeat: repeat;
