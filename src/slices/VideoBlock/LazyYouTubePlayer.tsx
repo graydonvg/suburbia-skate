@@ -1,8 +1,7 @@
 "use client";
 
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { KeyTextField } from "@prismicio/client";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type VideoProps = {
   youTubeID: KeyTextField;
@@ -10,14 +9,31 @@ type VideoProps = {
 
 export function LazyYouTubePlayer({ youTubeID }: VideoProps) {
   const videoContainerRef = useRef<HTMLDivElement>(null);
-  const isVisible = useIntersectionObserver(videoContainerRef, {
-    rootMargin: "1500px",
-    threshold: 0,
-  });
+  const [isIntersecting, setIsIntersecting] = useState(false);
+
+  useEffect(() => {
+    const videoContainer = videoContainerRef.current;
+
+    if (!videoContainer) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsIntersecting(entry.isIntersecting);
+      },
+      {
+        rootMargin: "1500px",
+        threshold: 0,
+      },
+    );
+
+    observer.observe(videoContainer);
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div ref={videoContainerRef} className="relative h-full w-full">
-      {isVisible && (
+      {isIntersecting && (
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${youTubeID}?autoplay=1&mute=1&loop=1&playlist=${youTubeID}`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

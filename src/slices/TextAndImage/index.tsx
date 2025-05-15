@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { Heading } from "@/components/Heading";
 import { ButtonLink } from "@/components/ButtonLink";
 import { ParallaxImage } from "./ParallaxImage";
+import SlideIn from "@/components/SlideIn";
 
 /**
  * Props for `TextAndImage`.
@@ -47,18 +48,24 @@ const TextAndImage: FC<TextAndImageProps> = ({ slice, index }) => {
             },
           )}
         >
-          <Heading as="h2" size="lg">
-            <PrismicText field={slice.primary.heading} />
-          </Heading>
-          <div className="max-w-md text-lg leading-relaxed">
-            <PrismicRichText field={slice.primary.body} />
-          </div>
-          <ButtonLink
-            field={slice.primary.button}
-            color={theme === "Lime" ? "orange" : "lime"}
-          >
-            {slice.primary.button.text}
-          </ButtonLink>
+          <SlideIn>
+            <Heading as="h2" size="lg">
+              <PrismicText field={slice.primary.heading} />
+            </Heading>
+          </SlideIn>
+          <SlideIn>
+            <div className="max-w-md text-lg leading-relaxed">
+              <PrismicRichText field={slice.primary.body} />
+            </div>
+          </SlideIn>
+          <SlideIn>
+            <ButtonLink
+              field={slice.primary.button}
+              color={theme === "Lime" ? "orange" : "lime"}
+            >
+              {slice.primary.button.text}
+            </ButtonLink>
+          </SlideIn>
         </div>
 
         <ParallaxImage
