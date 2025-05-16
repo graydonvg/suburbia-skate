@@ -93,6 +93,29 @@ function Scene({
     return () => controller.abort();
   }, [camera]);
 
+  useGSAP(() => {
+    const origin = originRef.current;
+    const board = containerRef.current;
+
+    if (!board || !origin) return;
+
+    gsap.to(board.position, {
+      x: 0.2,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+
+    gsap.to(origin.rotation, {
+      y: Math.PI / 64,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+  });
+
   const handleClick = contextSafe((event: ThreeEvent<MouseEvent>) => {
     event.stopPropagation();
 
