@@ -4,12 +4,14 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { cn } from "@/lib/utils";
+import { useIsSafari } from "@/hooks/useIsSafari";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP);
 }
 
 export function WavyPaths() {
+  const isSafari = useIsSafari();
   const root = useRef<SVGSVGElement>(null);
 
   useGSAP(() => {
@@ -38,7 +40,9 @@ export function WavyPaths() {
       viewBox="0 0 1242 308"
       width={1242}
       height={308}
-      className={cn("pointer-events-none text-zinc-600", "animate-squiggle")}
+      className={cn("pointer-events-none text-zinc-600", {
+        "animate-squiggle": !isSafari,
+      })}
     >
       <path
         stroke="currentColor"

@@ -1,13 +1,18 @@
+"use client";
+
+import { useIsSafari } from "@/hooks/useIsSafari";
 import { cn } from "@/lib/utils";
 import { SVGProps } from "react";
 
 export function TallLogo({ className, ...props }: SVGProps<SVGSVGElement>) {
+  const isSafari = useIsSafari();
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 366 420"
-      className={cn("animate-squiggle", className)}
+      className={cn({ "animate-squiggle": !isSafari }, className)}
       {...props}
     >
       <path
