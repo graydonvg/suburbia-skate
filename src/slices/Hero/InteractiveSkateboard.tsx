@@ -2,13 +2,19 @@
 
 import * as THREE from "three";
 import { Skateboard } from "@/components/Skateboard";
-import { ContactShadows, Environment, OrbitControls } from "@react-three/drei";
+import {
+  ContactShadows,
+  Environment,
+  Html,
+  OrbitControls,
+} from "@react-three/drei";
 import { Canvas, ThreeEvent, useThree } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Hotspot } from "./Hotspot";
+import { WavyPaths } from "./WavyPaths";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP);
@@ -206,7 +212,7 @@ function Scene({
 
   return (
     <group>
-      <OrbitControls />
+      <OrbitControls enableZoom={false} />
       <Environment files={"/hdr/warehouse-256.hdr"} />
       {/* Origin group is to allow the board to rotate from it's center */}
       <group ref={originRef}>
@@ -256,6 +262,20 @@ function Scene({
         </group>
       </group>
       <ContactShadows opacity={0.6} position={[0, -0.08, 0]} />
+      <group
+        rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+        position={[0, -0.09, -0.5]}
+        scale={[0.2, 0.2, 0.2]}
+      >
+        <Html
+          transform
+          zIndexRange={[1, 0]}
+          occlude="blending"
+          wrapperClass="pointer-events-none"
+        >
+          <WavyPaths />
+        </Html>
+      </group>
     </group>
   );
 }
