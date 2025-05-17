@@ -14,7 +14,7 @@ type CustomizerControlsContextType = {
   setTruck: (truck: Content.BoardCustomizerDocumentDataMetalsItem) => void;
 
   selectedBolt?: Content.BoardCustomizerDocumentDataMetalsItem;
-  setBolt: (truck: Content.BoardCustomizerDocumentDataMetalsItem) => void;
+  setBolt: (bolt: Content.BoardCustomizerDocumentDataMetalsItem) => void;
 };
 
 const defaultContext: CustomizerControlsContextType = {

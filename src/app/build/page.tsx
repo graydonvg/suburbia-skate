@@ -27,11 +27,11 @@ export default async function BuildPage(props: {
   const defaultDeck =
     decks.find((deck) => deck.uid === searchParams.deck) ?? decks[0];
   const defaultWheel =
-    wheels.find((wheel) => wheel.uid === searchParams.deck) ?? wheels[0];
+    wheels.find((wheel) => wheel.uid === searchParams.wheel) ?? wheels[0];
   const defaultTruck =
-    metals.find((metal) => metal.uid === searchParams.deck) ?? metals[0];
+    metals.find((metal) => metal.uid === searchParams.truck) ?? metals[0];
   const defaultBolt =
-    metals.find((metal) => metal.uid === searchParams.deck) ?? metals[0];
+    metals.find((metal) => metal.uid === searchParams.bolt) ?? metals[0];
 
   const deckTextureURLs = decks
     .map((texture) => asImageSrc(texture.texture))
