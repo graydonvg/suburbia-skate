@@ -1,10 +1,12 @@
 "use client";
 
-import { Content } from "@prismicio/client";
+import { Content, isFilled } from "@prismicio/client";
 import { useCustomizerControlsContext } from "../../context";
 import { cn } from "@/lib/utils";
 import Options from "./Options";
 import Option from "./Option";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 interface Props
   extends Pick<
@@ -25,6 +27,30 @@ export default function Controls({ wheels, decks, metals, className }: Props) {
     selectedTruck,
     selectedBolt,
   } = useCustomizerControlsContext();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const updatedSearchParams = new URLSearchParams(searchParams);
+
+    if (isFilled.keyText(selectedDeck?.uid))
+      updatedSearchParams.set("deck", selectedDeck?.uid);
+    if (isFilled.keyText(selectedWheel?.uid))
+      updatedSearchParams.set("wheel", selectedWheel?.uid);
+    if (isFilled.keyText(selectedTruck?.uid))
+      updatedSearchParams.set("truck", selectedTruck?.uid);
+    if (isFilled.keyText(selectedBolt?.uid))
+      updatedSearchParams.set("bolt", selectedBolt?.uid);
+
+    router.replace(`?${updatedSearchParams.toString()}`);
+  }, [
+    router,
+    selectedBolt?.uid,
+    selectedDeck?.uid,
+    selectedTruck?.uid,
+    selectedWheel?.uid,
+    searchParams,
+  ]);
 
   return (
     <div className={cn("flex flex-col gap-6", className)}>

@@ -8,15 +8,30 @@ import Preview from "./_components/Preview";
 import { asImageSrc } from "@prismicio/client";
 import Controls from "./_components/controls/Controls";
 
-export default async function BuildPage() {
+type SearchParams = {
+  deck?: string;
+  wheel?: string;
+  truck?: string;
+  bolt?: string;
+};
+
+export default async function BuildPage(props: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const searchParams = await props.searchParams;
+
   const client = createClient();
   const customizerSettings = await client.getSingle("board_customizer");
   const { decks, wheels, metals } = customizerSettings.data;
 
-  const defaultDeck = decks[0];
-  const defaultWheel = wheels[0];
-  const defaultTruck = metals[0];
-  const defaultBolt = metals[0];
+  const defaultDeck =
+    decks.find((deck) => deck.uid === searchParams.deck) ?? decks[0];
+  const defaultWheel =
+    wheels.find((wheel) => wheel.uid === searchParams.deck) ?? wheels[0];
+  const defaultTruck =
+    metals.find((metal) => metal.uid === searchParams.deck) ?? metals[0];
+  const defaultBolt =
+    metals.find((metal) => metal.uid === searchParams.deck) ?? metals[0];
 
   const deckTextureURLs = decks
     .map((texture) => asImageSrc(texture.texture))
