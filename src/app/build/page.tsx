@@ -7,6 +7,7 @@ import { createClient } from "@/prismicio";
 import Preview from "./_components/Preview";
 import { asImageSrc } from "@prismicio/client";
 import Controls from "./_components/controls/Controls";
+import Loading from "./_components/Loading";
 
 type SearchParams = {
   deck?: string;
@@ -49,15 +50,15 @@ export default async function BuildPage(props: {
         defaultBolt={defaultBolt}
       >
         <div className="relative aspect-square shrink-0 bg-[#3a414a] lg:aspect-auto lg:grow">
-          <Link href="/" className="absolute left-6 top-6 z-50">
-            <Logo className="h-12 text-white" />
-          </Link>
           <div className="absolute inset-0">
             <Preview
               deckTextureURLs={deckTextureURLs}
               wheelTextureURLs={wheelTextureURLs}
             />
           </div>
+          <Link href="/" className="absolute left-6 top-6">
+            <Logo className="h-12 text-white" />
+          </Link>
         </div>
         <div className="texture-bg grow bg-zinc-900 text-white ~p-4/6 lg:w-96 lg:shrink-0 lg:grow-0">
           <Heading as="h1" size="sm" className="mb-6 mt-0">
@@ -74,6 +75,7 @@ export default async function BuildPage(props: {
           </ButtonLink>
         </div>
       </CustomizerControlsProvider>
+      <Loading />
     </div>
   );
 }

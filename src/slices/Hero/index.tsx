@@ -11,7 +11,6 @@ import { Heading } from "@/components/Heading";
 import { ButtonLink } from "@/components/ButtonLink";
 import { WideLogo } from "./WideLogo";
 import { TallLogo } from "./TallLogo";
-import { SVGFilters } from "@/slices/Hero/SVGFilters";
 import { InteractiveSkateboard } from "./InteractiveSkateboard";
 
 const DEFAULT_DECK_TEXTURE = "/skateboard/Deck.webp";
@@ -64,7 +63,6 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       <div className="absolute inset-0 flex items-center pt-20">
         <WideLogo className="hidden w-full text-brand-purple opacity-20 mix-blend-multiply lg:block" />
         <TallLogo className="w-full text-brand-purple opacity-20 mix-blend-multiply lg:hidden" />
-        <SVGFilters />
       </div>
 
       <InteractiveSkateboard
